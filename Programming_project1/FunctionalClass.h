@@ -5,12 +5,6 @@
 struct Point {
 	double x;
 	double y;
-	Point operator+(const Point& other) const {
-		return { x + other.x, y + other.y };
-	}
-	Point operator/(double number) const {
-		return { x / number, y / number };
-	}
 };
 
 class Functional_class
