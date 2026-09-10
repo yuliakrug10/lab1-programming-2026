@@ -1,6 +1,7 @@
 #include <fstream>
 #include <stdexcept>
 #include <string>
+#include <vector>
 #include "FunctionalClass.h"
 
 Functional_class input_values(size_t& iteration_num, const std::string& input_data) {
@@ -15,18 +16,25 @@ Functional_class input_values(size_t& iteration_num, const std::string& input_da
 		throw std::invalid_argument("Number of iterations must be a positive integer!");
 	}
 
+	auto read_point = [&f](Point& pt) -> bool {
+		double x, y;
+		if (f >> x >> y) {
+			pt = Point{ x, y };
+			return true;
+		}
+		return false;
+	};
+
 	//input starting point
-	double x;
-	double y;
-	if (!(f >> x >> y)) {
-		throw std::invalid_argument("Coordinates must be a double!");
+	Point start_point;
+	if (!read_point(start_point)) {
+		throw std::invalid_argument("Initial point coordinates must be doubles!");
 	}
-	Point start_point{ x, y };
 	
 	//input base points
 	std::vector<Point> base_points;
-	while (f >> x >> y) {
-		Point curr_point{ x, y };
+	Point curr_point;
+	while (read_point(curr_point)) {
 		base_points.push_back(curr_point);
 	}
 	if (!f.eof()) {
