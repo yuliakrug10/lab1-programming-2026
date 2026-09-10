@@ -3,15 +3,15 @@
 #include <string>
 #include "FunctionalClass.h"
 
-FunctionalClass input_values(const std::string& input_data) {
+FunctionalClass input_values(size_t& iteration_num, const std::string& input_data) {
 	std::ifstream f(input_data);
 	if (!f.is_open()) {
 		throw std::runtime_error("Unable to open the file!");
 	}
 
 	//input iteration number
-	size_t iteration_num;
-	if (!(f >> iteration_num) || !iteration_num) {
+	size_t num;
+	if (!(f >> num) || !num) {
 		throw std::invalid_argument("Number of iterations must be a positive integer!");
 	}
 
@@ -33,6 +33,7 @@ FunctionalClass input_values(const std::string& input_data) {
 		throw std::invalid_argument("Base points coordinates must be a double!");
 	}
 
-	return FunctionalClass(iteration_num, start_point, base_points);
+	iteration_num = num;
+	return FunctionalClass(start_point, base_points);
 }
 

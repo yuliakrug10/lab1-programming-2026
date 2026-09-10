@@ -7,7 +7,7 @@ struct Point {
 class FunctionalClass
 {
 public:
-	FunctionalClass(size_t iteration_num, Point start_point, std::vector<Point> points);
+	FunctionalClass(Point start_point, std::vector<Point> points);
 	Point operator()();
 private:
 	Point main_point;
