@@ -15,7 +15,7 @@ Functional_class::Functional_class(Point start_point, std::vector<Point> points)
 
 Point Functional_class::operator()() {
 	int i = dist(rng);
-	main_point = (base_points[i] + main_point) / 2;
+	main_point = (base_points[i] + main_point) / 2.0;
 	return main_point;
 }
 

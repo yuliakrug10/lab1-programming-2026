@@ -21,7 +21,6 @@ public:
 private:
 	Point main_point;
 	std::vector<Point> base_points;
-	// std::vector<Point> generated_points;
 	std::mt19937 rng;
 	std::uniform_int_distribution<size_t> dist;
 };
