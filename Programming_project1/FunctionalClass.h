@@ -4,10 +4,10 @@ struct Point {
 	double x;
 	double y;
 };
-class Functional_class
+class FunctionalClass
 {
 public:
-	Functional_class(Point start_point, std::vector<Point> points);
+	FunctionalClass(size_t iteration_num, Point start_point, std::vector<Point> points);
 	Point operator()();
 private:
 	Point main_point;
