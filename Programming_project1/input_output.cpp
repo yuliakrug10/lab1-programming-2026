@@ -3,7 +3,7 @@
 #include <string>
 #include "FunctionalClass.h"
 
-FunctionalClass input_values(size_t& iteration_num, const std::string& input_data) {
+Functional_class input_values(size_t& iteration_num, const std::string& input_data) {
 	std::ifstream f(input_data);
 	if (!f.is_open()) {
 		throw std::runtime_error("Unable to open the file!");
@@ -34,6 +34,6 @@ FunctionalClass input_values(size_t& iteration_num, const std::string& input_dat
 	}
 
 	iteration_num = num;
-	return FunctionalClass(start_point, base_points);
+	return Functional_class(start_point, base_points);
 }
 
