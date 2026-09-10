@@ -1,5 +1,7 @@
 #include "FunctionalClass.h"
 #include <stdexcept>
+#include <functional>
+
 
 Functional_class::Functional_class(Point start_point, std::vector<Point> points)
     : main_point(start_point),
@@ -14,9 +16,14 @@ Functional_class::Functional_class(Point start_point, std::vector<Point> points)
 }
 
 Point Functional_class::operator()() {
-	int i = dist(rng);
-	main_point = (base_points[i] + main_point) / 2.0;
-	return main_point;
+    size_t i = dist(rng);
+    std::plus<double> add;
+    std::divides<double> div;
+
+    main_point.x = div(add(main_point.x, base_points[i].x), 2.0);
+    main_point.y = div(add(main_point.y, base_points[i].y), 2.0);
+
+    return main_point;
 }
 
 
