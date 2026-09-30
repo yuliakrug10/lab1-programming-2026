@@ -5,30 +5,13 @@
 #include "input_output.h"
 #include <stdexcept>
 #include <iostream>
-#include <functional>
-#include <fstream>
 
 using namespace std;
 
-void generate_output(const string& output_file,
-    Functional_class& obj, size_t iteration) {
-    ofstream outfile(output_file);
-    if (!outfile.is_open()) {
-        throw std::runtime_error("Unable to open the output file!");
-    }
-    auto write_point = [&outfile](const Point& p) {
-        outfile << p.x << " " << p.y << '\n';
-        };
-    for (size_t i = 0; i < iteration; ++i)
-    {
-        Point temp_point = obj();
-        write_point(temp_point);
-    }
-}
 
 int main(int argc, char* argv[]) {
-    if (argc != 2) {
-        cout << "Error, does not find file path" << endl;
+    if (argc < 2) {
+        cout << "ERROR: does not find file path" << endl;
         return 1;
     }
     const string input_data = argv[1];
@@ -38,7 +21,7 @@ int main(int argc, char* argv[]) {
         generate_output("output.txt", Obj_1, iteration);
     }
     catch (const exception& e) {
-        cerr << "Error" << e.what();
+        cerr << "ERROR: " << e.what();
     }
     return 0;
 }
